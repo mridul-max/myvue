@@ -1,0 +1,22 @@
+version: '3'
+services:
+  nodejs-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3080:3080"
+    container_name: node-server
+    volumes:
+        - ./:/usr/src/app/demo_vue
+        - /usr/src/app/demo_vue/node_modules
+  demo_vue:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    container_name: demo_vue
+    volumes:
+       - ./:/usr/src/app/demo_vue
+       - /usr/src/app/demo_vue/node_modules
